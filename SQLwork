@@ -6,11 +6,11 @@ sex char(1) not null
 
 );
 
-insert into Visitors(id, Ф.И.О, Дата рождения, Пол) values (1,'QWE', 2000 -01 -02, 'М');  
-insert into Visitors(id, Ф.И.О, Дата рождения, Пол) values (2,'ASD', 2001 -02 -03, 'Ж');
-insert into Visitors(id, Ф.И.О, Дата рождения, Пол) values (3,'ZXC', 2003 -03 -24, 'М');
-insert into Visitors(id, Ф.И.О, Дата рождения, Пол) values (4,'RTY', 1999 -04 -12, 'Ж');
-insert into Visitors(id, Ф.И.О, Дата рождения, Пол) values (5,'FGH', 1998 -09 -28, 'М');
+insert into Visitors(id, fullname, dateofbirth, sex) values (1,'QWE', '2000-01-02', 'М');  
+insert into Visitors(id, fullname, dateofbirth, sex) values (2,'ASD', '2001-02-03', 'Ж');
+insert into Visitors(id, fullname, dateofbirth, sex)values (3,'ZXC', '2003-03-24', 'М');
+insert into Visitors(id, fullname, dateofbirth, sex) values (4,'RTY', '1999-04-12', 'Ж');
+insert into Visitors(id, fullname, dateofbirth, sex) values (5,'FGH', '1998-09-28', 'М');
 
 create table Visits (
 id integer primary key,
@@ -20,11 +20,15 @@ trainer varchar(50) not null
 
 );
 
-insert into Visits(id, Время визита, Тренер) values (1, 19:00:40, 'Bruce Lee');  
-insert into Visits(id, Время визита, Тренер) values (2, 19:10:10, 'Jackie Chan');
-insert into Visits(id, Время визита, Тренер) values (3, 13:00:30, 'Van Damme');
-insert into Visits(id, Время визита, Тренер) values (4, 15:30:50, 'Steven Seagul');
-insert into Visits(id, Время визита, Тренер) values (5, 9:30:20, 'Arnold Schwarzenegger');
+insert into Visits(id, visitingtime, trainer) values (1, '19:00:40', 'Bruce Lee');  
+insert into Visits(id, visitingtime, trainer) values (2, '19:10:10', 'Jackie Chan');
+insert into Visits(id, visitingtime, trainer) values (3, '13:00:30', 'Van Damme');
+insert into Visits(id, visitingtime, trainer) values (4, '15:30:50', 'Steven Seagul');
+insert into Visits(id, visitingtime, trainer) values (5, '09:30:20', 'Arnold Schwarzenegger');
+
+update visits
+set visitingtime = '22:30:24'
+where visitingtime = '09:30:20';
 
 select * from Visits
 order by visitingTime desc;
