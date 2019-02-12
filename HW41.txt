@@ -1,0 +1,92 @@
+create table Trainers (
+id integer primary key,
+name varchar (40) not null,
+wage integer not null
+
+);
+
+insert into Trainers (id,name,wage) values (1, 'Bruce Lee',             50000);
+insert into Trainers (id,name,wage) values (2, 'Jackie Chan',           40000);
+insert into Trainers (id,name,wage) values (3, 'Steve Seagul',          30000);
+insert into Trainers (id,name,wage) values (4, 'Van Damme',             35000);
+insert into Trainers (id,name,wage) values (5, 'Arnold Schwarzenegger', 70000);
+
+select * from trainers;
+
+select sum(wage) from trainers;
+
+
+
+
+public static void main(String[] args) {
+        Main main = new Main();
+        System.out.println(main.trainers());
+        System.out.println(main.totalWage());
+        System.out.println(main.surnamesOfTrainers());
+    }
+
+    public String trainers() {
+        String SQL = "select * from Trainers ";
+        try (Connection conn = connect();
+             Statement stmt = connect().createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)) {
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                int wage = rs.getInt(3);
+
+                System.out.println("id: " + id);
+                System.out.println("Имя: " + name);
+                System.out.println("Заработная плата: " + wage);
+                System.out.println("----------------------------");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+
+        return "";
+    }
+
+    public String totalWage() {
+
+        String SQL = "select sum(wage) from Trainers; ";
+        int sum = 0;
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)) {
+            while (rs.next()) {
+                System.out.print("Общая заработная плата Тренеров = ");
+                System.out.println(sum += rs.getInt(1));
+                System.out.println();
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "----------------------------";
+    }
+
+
+    public String surnamesOfTrainers() {
+        String SQL = "select name from trainers ";
+        String numberOfLettersInSurname;
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)) {
+            while (rs.next()) {
+                numberOfLettersInSurname = rs.getString(1);
+                if (numberOfLettersInSurname.length() > 3) {
+                    System.out.println(numberOfLettersInSurname + " - Молодец ");
+                }
+
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return "----------------------------";
+    }
+}
